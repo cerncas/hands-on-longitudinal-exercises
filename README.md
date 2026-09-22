@@ -1,21 +1,19 @@
 CAS Introduction 2026 — Longitudinal Hands-On
 ================================
 
-:::info
-**TL;DR**
-
-1. **Setup:** follow the [Setup Quick Start](https://github.com/cerncas/hands-on-python/blob/main/Setup_QuickStart.md) of the transverse hands-on, if not already done. Nothing more to install.
-2. **Download** the longitudinal exercises next to the transverse ones, from the terminal (**Miniforge Prompt** on Windows):
-
-   ```bash
-   cd ~/Documents
-   git clone https://github.com/cerncas/hands-on-longitudinal-exercises.git
-   ```
-
-   No `git`? Download the [ZIP](https://github.com/cerncas/hands-on-longitudinal-exercises/archive/refs/heads/main.zip) and unpack it in your `Documents` folder.
-3. **Open the notebooks** in JupyterLab, exactly as for the transverse ones.
-
-:::
+> [!TIP]
+> **TL;DR**
+>
+> 1. **Setup:** follow the [Setup Quick Start](https://github.com/cerncas/hands-on-python/blob/main/Setup_QuickStart.md) of the transverse hands-on, if not already done. Nothing more to install.
+> 2. **Download** the longitudinal exercises next to the transverse ones, from the terminal (**Miniforge Prompt** on Windows):
+>
+>    ```bash
+>    cd ~/Documents
+>    git clone https://github.com/cerncas/hands-on-longitudinal-exercises.git
+>    ```
+>
+>    No `git`? Download the [ZIP](https://github.com/cerncas/hands-on-longitudinal-exercises/archive/refs/heads/main.zip) and unpack it in your `Documents` folder.
+> 3. **Open the notebooks** in JupyterLab, exactly as for the transverse ones.
 
 # What we will do
 
@@ -79,9 +77,8 @@ Run the first cell of a notebook (`Shift`+`Enter`). It only contains imports and
 
 For the tracking session, you can also open `02_LongitudinalHandsOnTrackingAnimations.ipynb` and run it entirely (*Run → Run All Cells*): after a short while you should get a small movie with a play button.
 
-:::success
-**You are set. See you at CAS!**
-:::
+> [!NOTE]
+> **You are set. See you at CAS!**
 
 # Troubleshooting
 
