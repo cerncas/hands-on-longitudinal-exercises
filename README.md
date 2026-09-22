@@ -51,11 +51,7 @@ On Windows, the first line is `cd %USERPROFILE%\Documents`.
 
 You now have a folder `hands-on-longitudinal-exercises` next to `hands-on-lattice-exercises`, containing the notebooks, the solutions and the cheat sheets.
 
-> 🎬 **GIF 1:** terminal, the two commands, the new folder appearing in the file explorer next to the transverse one.
-
 No `git`? Either `conda install -c conda-forge git`, or download the [ZIP](https://github.com/cerncas/hands-on-longitudinal-exercises/archive/refs/heads/main.zip), unpack it in your `Documents` folder, and rename the unpacked folder to `hands-on-longitudinal-exercises`.
-
-> 🎬 **GIF 2 (optional):** download the ZIP from GitHub, unpack it in Documents, rename the folder.
 
 **Updates.** If we announce a new version of the material during the school, run in the course folder:
 
@@ -77,15 +73,11 @@ jupyter lab
 
 Your browser opens on JupyterLab listing the notebooks. Double-click the notebook of the session.
 
-> 🎬 **GIF 3:** terminal with the three commands, JupyterLab opening, double-click on the `02_` notebook.
-
 # 4. Check that it works
 
 Run the first cell of a notebook (`Shift`+`Enter`). It only contains imports and should print nothing. If it does, you are ready.
 
 For the tracking session, you can also open `02_LongitudinalHandsOnTrackingAnimations.ipynb` and run it entirely (*Run → Run All Cells*): after a short while you should get a small movie with a play button.
-
-> 🎬 **GIF 4 or screenshot:** the animations notebook with an animation and its play button.
 
 :::success
 **You are set. See you at CAS!**
