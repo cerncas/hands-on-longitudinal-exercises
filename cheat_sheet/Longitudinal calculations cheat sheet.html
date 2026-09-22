@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Longitudinal calculations cheat sheet</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+</head>
+<body>
+<h1 id="longitudinal-calculations-cheat-sheet">Longitudinal calculations
+cheat sheet</h1>
+<h2 id="relativistic-relationships">Relativistic relationships</h2>
+<ul>
+<li>Mass energy <span class="math display">E_0=m_0 c^2</span></li>
+<li>Total energy <span
+class="math display">E=E_{\mathrm{kin}}+E_0</span></li>
+<li>Momentum <span class="math display">E=\sqrt{(p c)^2+E_0^2}</span>
+<span class="math display">p=\gamma m_0 \beta c</span></li>
+<li>Relativistic velocity <span class="math display">\beta = \frac{v}{c}
+= \frac{p c}{E} = \sqrt{1-\frac{1}{\gamma^2}}</span></li>
+<li>Lorentz factor <span class="math display">\gamma = \frac{E}{E_0} =
+\frac{1}{\sqrt{1-\beta^2}}</span></li>
+<li>Differential relationships <span
+class="math display">\frac{dp}{p}=\frac{1}{\beta^2}\frac{dE}{E}=\gamma^2\frac{d\beta}{\beta}</span></li>
+</ul>
+<h2 id="machine-parameters">Machine parameters</h2>
+<ul>
+<li>Magnetic rigidity <span class="math display">B\rho =
+\frac{p}{q}</span></li>
+<li>Revolution period/frequency <span
+class="math display">T_0=\frac{2\pi
+R}{v}=\frac{1}{f}=\frac{2\pi}{\omega}</span></li>
+<li>RF period/frequency <span class="math display">f_{\mathrm{rf}}=h
+f=\frac{\omega_{\mathrm{rf}}}{2\pi}=\frac{1}{T_{\mathrm{rf}}}</span></li>
+<li>Linear momentum compaction factor (and transition factor) <span
+class="math display">\alpha_c=\frac{\Delta R/R}{\Delta
+p/p}=\frac{1}{\gamma^2_{t}}</span></li>
+<li>Linear phase slippage factor <span
+class="math display">\eta=\frac{\Delta T/T}{\Delta p/p}=-\frac{\Delta
+f/f}{\Delta p/p}=\alpha_c-\frac{1}{\gamma^2}</span></li>
+<li>Other useful relationship <span
+class="math display">pR=\frac{\beta^2 E}{\omega}</span></li>
+</ul>
+<h2 id="longitudinal-equations-of-motion">Longitudinal equations of
+motion</h2>
+<ul>
+<li>Equation of motion 1 - Phase slippage (drift) along the ring
+(continuous) <span class="math display">\frac{d\phi}{dt}= \frac{h \eta
+\omega}{p R}  \left(\frac{\Delta E}{\omega}\right)= \frac{h \eta
+\omega^2}{\beta^2 E}  \left(\frac{\Delta E}{\omega}\right)</span></li>
+<li>Equation of motion 2 - Energy kick with single RF cavity
+(continuous) <span class="math display">\frac{d}{dt}\left(\frac{\Delta
+E}{\omega}\right)=\frac{qV}{2\pi}\left(\sin\phi-\sin\phi_s\right)</span></li>
+<li>Equation of motion 1 - Phase slippage (drift) along the ring
+(discretized over <span class="math inline">T_0</span>) <span
+class="math display">\phi_{n+1} = \phi_n + 2 \pi h \eta \frac{\Delta
+E_n}{\beta^2 E}</span></li>
+<li>Equation of motion 2 - Energy kick in cavity (discretized over <span
+class="math inline">T_0</span>, <span
+class="math inline">\dot\omega</span> neglected) <span
+class="math display">\Delta E_{n+1} = \Delta E_n + q V \sin (\phi_{n+1})
+- U_0</span></li>
+<li>Beam energy gain per turn <span
+class="math display">U_0=qV\sin\phi_s</span></li>
+</ul>
+<h2 id="bucket-parameters-and-synchrotron-motion">Bucket parameters and
+synchrotron motion</h2>
+<ul>
+<li>Bucket height <span class="math display">\Delta
+E_{\mathrm{max}}=\beta\sqrt{\frac{2qVE}{\pi h
+|\eta|}}Y\left(\phi_s\right)</span></li>
+<li>Bucket height reduction factor <span
+class="math display">Y\left(\phi_s\right)=\left|\cos\phi_s-\frac{\pi-2\phi_s}{2}\sin\phi_s\right|^{1/2}</span></li>
+<li>Bucket area <span
+class="math display">A_{\mathrm{bk}}=16\frac{\beta}{\omega_{\mathrm{rf}}}\sqrt{\frac{qVE}{2\pi
+h |\eta|}}\alpha\left(\phi_s\right)</span></li>
+<li>Bucket area reduction factor <span
+class="math display">\alpha\left(\phi_s\right)\approx\frac{1-\sin\phi_s}{1+\sin\phi_s}</span></li>
+<li>Angular synchrotron frequency (small amplitudes) <span
+class="math display">\Omega_s^2=\left(2\pi
+f_s\right)^2=-\omega^2\frac{h\eta
+qV\cos\phi_s}{2\pi\beta^2E}</span></li>
+<li>Non-linear synchrotron frequency for a maximum amplitude in phase
+<span class="math inline">\phi_u</span> (stationary bucket) <span
+class="math display">\frac{\Omega\left(\phi_u\right)}{\Omega_s}\approx1-\frac{\phi_u^2}{16}</span></li>
+<li>Synchrotron tune <span class="math display">Q_s =
+\frac{\Omega_s}{\omega}</span></li>
+</ul>
+<h2 id="synchrotron-radiation-and-beam-loading">Synchrotron radiation
+and beam loading</h2>
+<ul>
+<li><p>Energy loss per revolution for electron machines <span
+class="math display"> E_{\mathrm{sync}}=\frac{q^2}{3 \epsilon_0}
+\frac{\beta^3 \gamma^4}{\rho} </span></p></li>
+<li><p>Longitudinal radiation damping time <span
+class="math display">t_{\mathrm{damp}} =\frac{2 T_0
+E}{E_{\mathrm{sync}}} \frac{1}{(2 + D)} </span></p></li>
+<li><p>Damping re-partition number (isomagnetic ring with separated
+function magnets) <span class="math display">D= \alpha_c
+\frac{R}{\rho}</span></p></li>
+<li><p>Beam induced voltage (circuit definition of <span
+class="math inline">R/Q</span>) <span
+class="math display">V_{\mathrm{ind}}= q N_p \omega_{\mathrm{rf}}
+\frac{R}{Q}</span></p></li>
+</ul>
+<h2 id="synchronous-particle-differential-relationships">Synchronous
+particle differential relationships</h2>
+<p><a
+href="https://cds.cern.ch/record/104153/files/MPS-SI-Int-DL-70-4.pdf">C.
+Bovet et al., <em>A selection of formulae and data useful for the design
+of A.G. synchrotrons</em>, CERN-MPS-SI-Int-DL-70-4</a></p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variables</th>
+<th>Equations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline">B, p, R</span></td>
+<td><span class="math display">
+\frac{dp}{p}=\gamma_t^2\frac{dR}{R}+\frac{dB}{B} </span></td>
+</tr>
+<tr>
+<td><span class="math inline">f, p, R</span></td>
+<td><span class="math display">
+\frac{dp}{p}=\gamma^2\frac{df}{f}+\gamma^2\frac{dR}{R} </span></td>
+</tr>
+<tr>
+<td><span class="math inline">B, f, p</span></td>
+<td><span class="math display">
+\frac{dB}{B}=\gamma_t^2\frac{df}{f}+\frac{\gamma^2-\gamma^2_t}{\gamma^2}\frac{dp}{p}
+</span></td>
+</tr>
+<tr>
+<td><span class="math inline">B, f, R</span></td>
+<td><span class="math display">
+\frac{dB}{B}=\gamma^2\frac{df}{f}+\left(\gamma^2-\gamma_t^2\right)\frac{dR}{R}
+</span></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
